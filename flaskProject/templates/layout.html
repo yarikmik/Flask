@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+    <link href="style.css" rel="stylesheet" type="text/css"/>
+
+    <!-- Bootstrap CSS -->
+{#    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"#}
+{#          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">#}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alice&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+    {% if title %}
+        <title>Flask-BLUE'n'ORANGE - {{ title }}</title>
+    {% else %}
+        <title>Flask-BLUE'n'ORANGE</title>
+    {% endif %}
+
+    {% block head %} {% endblock head %}
+    {% block style %} {% endblock style %}
+</head>
+<body>
+<div id="container">
+    <div id="banner"><img src="{{ url_for('static', filename='img/banner.jpg') }}" alt="banner" title="banner"/></div>
+    <div id="bannerb">
+
+        {% if current_user.is_authenticated %}
+            <h4>??????<span class="orange">, {{ current_user.username }}!</span></h4>
+        {% else %}
+            <h1>Company<span class="orange"> Name</span></h1>
+        {% endif %}
+
+        <div class="scroll">
+            <h2>Jun 02 2022</h2>
+            <p class="news"> Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nulla congue, velit tristique
+                mattis auctor, velit elit euismod diam, a interdum tortor enim eget ante. </p>
+            <h2>Dec 02 2022</h2>
+            <p class="news">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nulla congue, velit tristique
+                mattis auctor, velit elit euismod diam, a interdum tortor enim eget ante.</p>
+        </div>
+        <p>You could have a news flash here or a mini blog maybe?</p>
+    </div>
+    <div class="topnav">
+        <div id="navcontainer">
+            <ul id="navlist">
+                <li id="active"><a href="{{ url_for("main.home") }}">home one</a></li>
+                <li><a href="{{ url_for("main.home") }}">home two</a></li>
+                <li><a href="{{ url_for("main.home") }}">home three</a></li>
+                <li><a href="{{ url_for("main.home") }}">home four</a></li>
+                <li><a href="{{ url_for("main.home") }}">home five</a></li>
+            </ul>
+        </div>
+        <div class="clear">&nbsp;</div>
+    </div>
+    <div id="sidebar">
+        <h1>Navigation</h1>
+        <div id="menu">
+            <ul>
+                <li><a href="http://web-mastery.info/">Snapp Happy</a></li>
+                <li><a href="http://web-mastery.info/">TODC</a></li>
+                <li><a href="http://web-mastery.info/">Andreas Viklund</a></li>
+                <li><a href="http://web-mastery.info/">James Koster</a></li>
+                <li><a href="http://web-mastery.info/">OSWD</a></li>
+                <li><a href="http://web-mastery.info/">CSS play</a></li>
+                <li><a href="http://web-mastery.info/">Listamatic </a></li>
+            </ul>
+        </div>
+        <p> Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nulla congue, velit tristique mattis auctor, velit
+            elit euismod diam, a interdum tortor enim eget ante. </p>
+    </div>
+    <div id="sidebar-b">
+        <h1>More Info</h1>
+        <p> Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nulla congue, velit tristique mattis auctor, velit
+            elit euismod diam, a interdum tortor enim eget ante. </p>
+        <ul>
+            <li><a href="http://web-mastery.info/">Link 1</a></li>
+            <li><a href="http://web-mastery.info/">Link 2</a></li>
+            <li><a href="http://web-mastery.info/">Link 3</a></li>
+        </ul>
+        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+    </div>
+    <div id="content">
+
+        {% block content %}{% endblock %}
+
+    </div>
+    <div id="footer"><a href="http://web-mastery.info/">homepage</a> | <a
+            href="mailto:denise@mitchinson.net">contact</a> | <a
+            href="http://validator.w3.org/check?uri=referer">html</a> | <a
+            href="http://jigsaw.w3.org/css-validator">css</a> | &copy; 2022 Anyone | Design by <a
+            href="http://www.mitchinson.net"> www.mitchinson.net</a><br/>
+    </div>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+</html>
