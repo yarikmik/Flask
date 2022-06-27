@@ -6,7 +6,7 @@ color : #666;
 background : #003250 url(img/bgd.png) center repeat;
 }
 #container {
-width : 740px;
+width : 800px;
 margin-left : auto;
 margin-right : auto;
 margin-top : 20px;
@@ -24,7 +24,7 @@ padding : 0;
 margin : 0 0 10px 0;
 }
 			/*TOP SCROLLBAR*/
-div.scroll {
+div.scroll, div.user_menu {
 overflow : auto;
 height : 7em;
 width : 160px;
