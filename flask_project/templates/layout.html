@@ -47,10 +47,9 @@
         <div class="navbar-nav">
             {% if current_user.is_authenticated %}
                 <a class="nav-item nav-link navigation-links" href="{{ url_for('users.account') }}"><i
-                        class="fa fa-user"></i>Профиль</a>
+                        class="fa fa-user"></i> Профиль</a>
                 <a class="nav-item nav-link navigation-links" href="{{ url_for('users.logout') }}"><i
-                        class="fa fa-sign-out"></i>
-                    Выйти</a>
+                        class="fa fa-sign-out"></i> Выйти</a>
 
             {% else %}
                 <a class="nav-link nav-item navigation-links" href="{{ url_for('users.login') }}">Войти</a>
@@ -67,11 +66,21 @@
     <div class="topnav">
         <div id="navcontainer">
             <ul id="navlist">
-                <li id="active"><a href="{{ url_for("main.home") }}">home one</a></li>
-                <li><a href="{{ url_for("main.home") }}">home two</a></li>
-                <li><a href="{{ url_for("main.home") }}">home three</a></li>
-                <li><a href="{{ url_for("main.home") }}">home four</a></li>
-                <li><a href="{{ url_for("main.home") }}">home five</a></li>
+                <li id="active"><a href="{{ url_for("main.home") }}">Home</a></li>
+                {% if current_user.is_authenticated %}
+
+                    <li><a href="{{ url_for('posts.allpost') }}"><i class="fa fa-th"></i> Все посты</a></li>
+                    <li><a href="{{ url_for('users.user_posts', username=current_user.username) }}"><i
+                            class="fa fa-address-book-o"></i> Мои посты</a></li>
+                    <li><a href="{{ url_for('posts.new_post') }}"><i class="fa fa-plus"></i> Новый пост</a></li>
+
+
+                {% endif %}
+
+                {#                <li><a href="{{ url_for("main.home") }}">home two</a></li>#}
+                {#                <li><a href="{{ url_for("main.home") }}">home three</a></li>#}
+                {#                <li><a href="{{ url_for("main.home") }}">home four</a></li>#}
+                {#                <li><a href="{{ url_for("main.home") }}">home five</a></li>#}
             </ul>
         </div>
         <div class="clear">&nbsp;</div>
@@ -91,8 +100,7 @@
         </div>
         <p> Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nulla congue, velit tristique mattis auctor, velit
             elit euismod diam, a interdum tortor enim eget ante. </p>
-    </div>
-    <div id="sidebar-b">
+
         <h1>More Info</h1>
         <p> Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nulla congue, velit tristique mattis auctor, velit
             elit euismod diam, a interdum tortor enim eget ante. </p>
@@ -103,8 +111,27 @@
         </ul>
         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
     </div>
+    {#    <div id="sidebar-b">#}
+    {#        <h1>More Info</h1>#}
+    {#        <p> Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nulla congue, velit tristique mattis auctor, velit#}
+    {#            elit euismod diam, a interdum tortor enim eget ante. </p>#}
+    {#        <ul>#}
+    {#            <li><a href="http://web-mastery.info/">Link 1</a></li>#}
+    {#            <li><a href="http://web-mastery.info/">Link 2</a></li>#}
+    {#            <li><a href="http://web-mastery.info/">Link 3</a></li>#}
+    {#        </ul>#}
+    {#        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>#}
+    {#    </div>#}
     <div id="content">
-
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
         {% block content %}{% endblock %}
 
     </div>

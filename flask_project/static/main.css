@@ -73,17 +73,34 @@ background: #036;
 color: #fff;
 }
 			/*CENTRE CONTENT*/
+.btn-success, .btn-success:hover {
+    color: #fff;
+    background-color: #F36207;
+    border-color: #F36207;
+}
+.btn-outline-success, .btn-outline-success:hover {
+    color: #F36207;
+    background-color: transparent;
+    background-image: none;
+    border-color: #F36207;
+}
+.btn-outline-success:not(:disabled):not(.disabled).active, .btn-outline-success:not(:disabled):not(.disabled):active, .show>.btn-outline-success.dropdown-toggle {
+    color: #fff;
+    background-color: #F36207;
+    border-color: #F36207;
+}
+
 #content {
 padding : 5px;
-margin-left : 205px;
-margin-right : 205px;
+/*margin-left : 205px;*/
+margin-right : 250px;
 background : #f7f7f7;
 color : #666;
 }
 			/*LEFT CONTENT*/
 #sidebar {
-float : left;
-width : 180px;
+float : right;
+width : 220px;
 margin : 0 5px 0 0;
 padding : 5px;
 color : #666;
@@ -91,7 +108,7 @@ background : #f2f2f5;
 }
 			/*LEFT MENU*/
 #menu {
-width : 180px;
+width : 220px;
 padding : 10px 0 0 0;
 }
 #menu ul {
@@ -103,7 +120,7 @@ list-style-type : none;
 margin : 0 0 0.1em 0;
 }
 #menu a {
-width : 160px;
+width : 220px;
 padding : 0.1em 0.8em;
 text-decoration : none;
 display : block;

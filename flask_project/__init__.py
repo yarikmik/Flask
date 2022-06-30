@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
-from flaskProject.config import Config
+from flask_project.config import Config
 from flask_bcrypt import Bcrypt
 
 db = SQLAlchemy()
@@ -16,7 +16,7 @@ def create_app():
     bcrypt.init_app(app)
 
     #  регистрация блюпринта
-    from flaskProject.main.routes import main
+    from flask_project.main.routes import main
     app.register_blueprint(main)
 
     #  подключаем файл конфига
@@ -26,7 +26,11 @@ def create_app():
     login_manager.init_app(app)
 
     #  регистрация блюпринта пользователей
-    from flaskProject.users.routes import users
+    from flask_project.users.routes import users
     app.register_blueprint(users)
+
+    #  регистрация блюпринта постов
+    from flask_project.posts.routes import posts
+    app.register_blueprint(posts)
 
     return app
