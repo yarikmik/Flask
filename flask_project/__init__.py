@@ -3,14 +3,15 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_project.config import Config
 from flask_bcrypt import Bcrypt
+from flask_mail import Mail
 
 db = SQLAlchemy()
 login_manager = LoginManager()
 bcrypt = Bcrypt()
-
+mail = Mail()
 
 #  создание flask приложения рекомендуется выполнять именно в __init__.py
-def create_app():
+def create_app(config_class=Config):
     app = Flask(__name__)
     db.init_app(app)
     bcrypt.init_app(app)
@@ -32,5 +33,7 @@ def create_app():
     #  регистрация блюпринта постов
     from flask_project.posts.routes import posts
     app.register_blueprint(posts)
+
+    mail.init_app(app)
 
     return app
