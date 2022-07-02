@@ -36,4 +36,8 @@ def create_app(config_class=Config):
 
     mail.init_app(app)
 
+    from flask_project.errors.handlers import errors
+    app.register_blueprint(errors)
+
+
     return app
