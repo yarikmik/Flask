@@ -1,5 +1,5 @@
 from flask import render_template, Blueprint
-from flaskProject.models import User
+from flask_project.models import User
 
 main = Blueprint('main', __name__)
 
