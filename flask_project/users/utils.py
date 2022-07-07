@@ -23,10 +23,10 @@ def save_picture(form_picture):
 def send_reset_email(user):
     token = user.get_reset_token()
     msg = Message('Запрос на сброс пароля',
-                  sender='yarik.mik@yandex.ru',
+                  sender='yarik.mik.dev@yandex.ru',
                   recipients=[user.email])
     msg.body = f'''Чтобы сбросить пароль, перейдите по следующей ссылке: 
                 {url_for('users.reset_token', token=token, _external=True)}. 
                 Если тогда просто проигнорируйте это письмо и никаких изменений не будет.'''
-    print(msg)
-    # mail.send(msg)
+    # print(msg)
+    mail.send(msg)
