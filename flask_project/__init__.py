@@ -10,6 +10,7 @@ login_manager = LoginManager()
 bcrypt = Bcrypt()
 mail = Mail()
 
+
 #  создание flask приложения рекомендуется выполнять именно в __init__.py
 def create_app(config_class=Config):
     app = Flask(__name__)
@@ -38,6 +39,5 @@ def create_app(config_class=Config):
 
     from flask_project.errors.handlers import errors
     app.register_blueprint(errors)
-
 
     return app

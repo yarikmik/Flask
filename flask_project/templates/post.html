@@ -34,8 +34,32 @@
 
                 {% endif %}
             </div>
+
+
         </div>
     </div>
+
+    {% if post.comments %}
+        {% if post.comments.count() > 0 %}
+            <div class="card text-bg-light mb-3" style="max-width: 18rem;">
+                <div class="card-header">Комментарии</div>
+                {% for comment in post.comments | reverse %}
+                    <div class="card-body">
+                        <h5 class="card-title">Автор: {{ comment.username }}</h5>
+                        <p class="card-text">{{ comment.body }}<br>
+                            <small>{{ comment.timestamp.strftime('%A, %d %B %Y %I:%M %p') }}</small>
+                        </p>
+                        {% if comment.username == current_user.username %}
+                            <form action="{{ url_for('posts.delete_comment', comment_id=comment.id) }}" method="POST">
+                                <input class="btn btn-danger" type="submit" value="Удалить комментарий">
+                            </form>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+
+        {% endif %}
+    {% endif %}
 
     <!-- Modal -->
     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
@@ -57,4 +81,33 @@
             </div>
         </div>
     </div>
+
+    <!-- add comments -->
+    <div class="content-section">
+    <h2>Оставте комментарий</h2>
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">{{ legend }}</legend>
+
+                <div class="form-group">
+{#                    {{ form.comment.label(class="form-control-label") }}#}
+                    {% if form.comment.errors %}
+                        {{ form.comment(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.comment.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.comment(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+    </div>
+
 {% endblock content %}
